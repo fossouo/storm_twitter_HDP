@@ -52,8 +52,8 @@ class TweetTopology
     
     // initialisation of the HDFS Bolt 
     
-    String hdfsOutputDir="tmp";
     String hostname=args[4];
+    String hdfsOutputDir=args[5];
 
  // Sync with FileSystem after every 100 tuples.
     SyncPolicy syncPolicy = new CountSyncPolicy(100);
@@ -98,7 +98,7 @@ class TweetTopology
     // set the config in debugging mode
     conf.setDebug(true);
 
-    if (args != null && args.length > 0) {
+    if (args != null && args.length > 0 && args[7] != "cluster") {
 
       // run it in a live cluster
 
@@ -106,7 +106,7 @@ class TweetTopology
       conf.setNumWorkers(3);
 
       // create the topology and submit with config
-      StormSubmitter.submitTopology(args[5], conf, builder.createTopology());
+      StormSubmitter.submitTopology(args[6], conf, builder.createTopology());
 
       } else {
 
@@ -119,13 +119,13 @@ class TweetTopology
       LocalCluster cluster = new LocalCluster();
 
       // submit the topology to the local cluster
-      cluster.submitTopology("tweet-word-count", conf, builder.createTopology());
+      cluster.submitTopology(args[6], conf, builder.createTopology());
 
       // let the topology run for 300 seconds. note topologies never terminate!
       Utils.sleep(300000);
 
       // now kill the topology
-      cluster.killTopology("tweet-word-count");
+      cluster.killTopology(args[6]);
 
       // we are done, so shutdown the local cluster
       cluster.shutdown();

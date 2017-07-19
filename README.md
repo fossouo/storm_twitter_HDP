@@ -11,4 +11,4 @@ $ mvn clean package
 
 3. Run the Storm in either local or cluster Mode
 
-storm jar target/tweet_loader-0.0.1-SNAPSHOT.jar  topologies.TweetTopology "[Your customer key]" "[Your secret key]" "[Your access token]" "[Your access secret]" "[Your NameNode]" "tweet-word-count"
+storm jar target/tweet_loader-0.0.1-SNAPSHOT.jar  topologies.TweetTopology "[Your customer key]" "[Your secret key]" "[Your access token]" "[Your access secret]" "[Your NameNode]" "[Your HDFS PATH]" "[Your Toplogy Name]" "[the choosen mode 'cluster' or 'local']"
