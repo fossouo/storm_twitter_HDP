@@ -64,7 +64,7 @@ class TweetTopology
     FileRotationPolicy rotationPolicy = new FileSizeRotationPolicy(128.0f, Units.MB);
     
     // Use default, Storm-generated file names
-    FileNameFormat fileNameFormat = new DefaultFileNameFormat().withExtension(".txt").withPath("/tmp/");
+    FileNameFormat fileNameFormat = new DefaultFileNameFormat().withExtension(".txt").withPath(hdfsOutputDir);
     
     HdfsBolt hdfsbolt = new HdfsBolt()
             .withFsUrl("hdfs://"+hostname+":8020")
