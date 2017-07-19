@@ -44,16 +44,16 @@ class TweetTopology
 //        "[Your secret key]",
 //        "[Your access token]",
 //        "[Your access secret]"
-            "xFtG5PxMhS3n5bC2WNO2CoO0G",
-            "Wsff60BcnN0RTlebrC7FE9hOYrZqch1IWmuJ2u1wId6Bu54Djb",
-            "843728611-1402Y3k1fVVBYs1cjZuDAOtD4zfBaBZ3jkw2TWDc",
-            "4NsFLs00wsVcM6kEIzVuy9fAAyh9eH020vVzcogVYs5w5"
+    args[0],
+    args[1],
+    args[2],
+    args[3]
     );
     
     // initialisation of the HDFS Bolt 
     
     String hdfsOutputDir="tmp";
-    String hostname="54.193.49.124";
+    String hostname=args[4];
 
  // Sync with FileSystem after every 100 tuples.
     SyncPolicy syncPolicy = new CountSyncPolicy(100);
@@ -67,7 +67,7 @@ class TweetTopology
     FileNameFormat fileNameFormat = new DefaultFileNameFormat().withExtension(".txt").withPath("/tmp/");
     
     HdfsBolt hdfsbolt = new HdfsBolt()
-            .withFsUrl("hdfs://54.193.49.124:8020")
+            .withFsUrl("hdfs://"+hostname+":8020")
             .withFileNameFormat(fileNameFormat)
             .withRecordFormat(format)
             .withRotationPolicy(rotationPolicy)
@@ -106,7 +106,7 @@ class TweetTopology
       conf.setNumWorkers(3);
 
       // create the topology and submit with config
-      StormSubmitter.submitTopology(args[0], conf, builder.createTopology());
+      StormSubmitter.submitTopology(args[5], conf, builder.createTopology());
 
       } else {
 
