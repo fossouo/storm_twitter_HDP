@@ -2,10 +2,12 @@
 stream twets in storm (HDP 2.3)
 
 1. Export JAVA_HOME
-export JAVA_HOME=/usr/jdk64/jdk1.8.0_112
+
+$ export JAVA_HOME=/usr/jdk64/jdk1.8.0_112
 
 2. Build the project
-mvn clean package
+
+$ mvn clean package
 
 3. Run the Storm in either local or cluster Mode
 
