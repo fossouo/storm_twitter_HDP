@@ -61,7 +61,7 @@ class TweetTopology
     RecordFormat format = new DelimitedRecordFormat().withFieldDelimiter("|");
     
     // Rotate files after each 127MB
-    FileRotationPolicy rotationPolicy = new FileSizeRotationPolicy(5.0f, Units.MB);
+    FileRotationPolicy rotationPolicy = new FileSizeRotationPolicy(128.0f, Units.MB);
     
     // Use default, Storm-generated file names
     FileNameFormat fileNameFormat = new DefaultFileNameFormat().withExtension(".txt").withPath("/tmp/");
