@@ -74,7 +74,7 @@ class TweetTopology {
 
 		// FileNameFormat fileNameFormat = new DefaultFileNameFormat().withPath("/tmp/"); // if we want to use the default extension (usualy .txt)
 		FileNameFormat fileNameFormat = new DefaultFileNameFormat()
-				.withExtension(".csv")
+				.withExtension(".txt")
 				.withPath("/" + hdfsOutputDir + "/");
 
 		HdfsBolt hdfsbolt = new HdfsBolt().withFsUrl("hdfs://" + hostname + ":"+portNumber).withFileNameFormat(fileNameFormat)
